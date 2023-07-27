@@ -40,8 +40,12 @@ include_directories(include
 add_library(tf_utils SHARED
   src/tf_utils.cpp
 )
-
 ament_target_dependencies(tf_utils ${dependencies})
+
+add_library(point_types_custom SHARED
+  src/point_types_custom.cpp
+)
+ament_target_dependencies(point_types_custom ${dependencies})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -56,8 +60,8 @@ if(BUILD_TESTING)
 endif()
 
 install(TARGETS
-  tf_utils
-  EXPORT tf_utilsTargets
+  tf_utils point_types_custom
+  EXPORT pointcloud_utilsTargets
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
@@ -69,6 +73,6 @@ install(DIRECTORY include/
 )
 
 ament_export_include_directories("include/${PROJECT_NAME}" ${EIGEN3_INCLUDE_DIR})
-ament_export_targets(tf_utilsTargets HAS_LIBRARY_TARGET)
+ament_export_targets(pointcloud_utilsTargets HAS_LIBRARY_TARGET)
 ament_export_dependencies(${dependencies} PCL)
 ament_package()
