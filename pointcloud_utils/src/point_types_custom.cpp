@@ -10,4 +10,10 @@ namespace pcl
     os << "(" << p.x << ", " << p.y << ", " << p.z << " - " << p.intensity << ", " << p.ring << ", " << p.time << ")";
     return (os);
   }
+
+  std::ostream& operator << (std::ostream& os, const PointXYZT& p)
+  {
+    os << "(" << p.x << ", " << p.y << ", " << p.z << " - " << p.temperature << ")";
+    return (os);
+  }
 }
